@@ -1,0 +1,26 @@
+
+Record name:	Graphite (general purpose industrial)(parallel to plane)
+Record origin:	In-house data
+Data source:	Exported from Granta EduPack 2022 R2
+Table: MaterialUniverse
+Record: Graphite (general purpose industrial)(parallel to plane)
+Tensile modulus [Pa]:	6.493e+9
+Tensile strength, yield [Pa]:	5212000
+Tensile strength, ultimate [Pa]:	5212000
+Thermal conductivity [W/m.°C]:	135.7
+Electrical resistivity [ohm.m]:	9.508e-8
+Thermal expansion coefficient [strain/°C]:	5.292e-7
+Maximum service temperature [K]:	2697
+UNS number:	
+Equivalents:	
+Specific heat capacity [J/kg.°C]:	889.4
+Tensile elongation [strain]:	7.616e-4
+Designation:	Graphite, general purpose industrial graphite (parallel to grain)
+Density [kg/m^3]:	1651
+Composition:	C
+Poisson's ratio:	0.1977
+Base material:	C (Carbon)
+Condition:	
+Electrical conductivity [Siemens/m]:	10540000
+Electrical resistivity [1/Siemens/m]:	9.484e-8
+

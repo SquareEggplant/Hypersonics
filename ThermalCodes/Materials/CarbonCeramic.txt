@@ -1,0 +1,26 @@
+
+Record name:	Carbon (industrial)
+Record origin:	In-house data
+Data source:	Exported from Granta EduPack 2022 R2
+Table: MaterialUniverse
+Record: Carbon (industrial)
+Tensile modulus [Pa]:	9.487e+9
+Tensile strength, yield [Pa]:	11310000
+Tensile strength, ultimate [Pa]:	11310000
+Thermal conductivity [W/m.°C]:	12.25
+Electrical resistivity [ohm.m]:	4.583e-5
+Thermal expansion coefficient [strain/°C]:	2.550e-6
+Maximum service temperature [K]:	2908
+UNS number:	
+Equivalents:	
+Specific heat capacity [J/kg.°C]:	959.8
+Tensile elongation [strain]:	0.001162
+Designation:	Carbon, industrial carbon
+Density [kg/m^3]:	1530
+Composition:	C
+Poisson's ratio:	0.1977
+Base material:	C (Carbon)
+Condition:	
+Electrical conductivity [Siemens/m]:	21820
+Electrical resistivity [1/Siemens/m]:	4.584e-5
+

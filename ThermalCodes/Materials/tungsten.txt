@@ -1,0 +1,26 @@
+
+Record name:	Tungsten (f)
+Record origin:	In-house data
+Data source:	Exported from Granta EduPack 2022 R2
+Table: MaterialUniverse
+Record: Tungsten (f)
+Tensile modulus [Pa]:	3.969e+11
+Tensile strength, yield [Pa]:	1.927e+9
+Tensile strength, ultimate [Pa]:	2.381e+9
+Thermal conductivity [W/m.°C]:	164.9
+Electrical resistivity [ohm.m]:	5.249e-8
+Thermal expansion coefficient [strain/°C]:	4.424e-6
+Maximum service temperature [K]:	1225
+UNS number:	
+Equivalents:	
+Specific heat capacity [J/kg.°C]:	135.9
+Tensile elongation [strain]:	0.008367
+Designation:	Tungsten, fiber
+Density [kg/m^3]:	19480
+Composition:	W
+Poisson's ratio:	0.2698
+Base material:	W (Tungsten)
+Condition:	
+Electrical conductivity [Siemens/m]:	19030000
+Electrical resistivity [1/Siemens/m]:	5.254e-8
+

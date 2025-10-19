@@ -1,0 +1,230 @@
+
+Record name:	Stainless steel, austenitic, AISI 301, annealed
+Record origin:	In-house data
+Data source:	Exported from Granta EduPack 2022 R2
+Table: MaterialUniverse
+Record: Stainless steel, austenitic, AISI 301, annealed
+Tensile modulus [Pa]:	2.051e+11
+Tensile strength, yield [Pa]:	2.379e+8
+Tensile strength, ultimate [Pa]:	5.288e+8
+Thermal conductivity [W/m.°C]:	16.24
+Electrical resistivity [ohm.m]:	7.075e-7
+Thermal expansion coefficient [strain/°C]:	1.661e-5
+Thermal expansion coefficient with temperature [K], [strain/°C]:	
+    22.95, 7.990e-6
+    102.9, 1.064e-5
+    183, 1.261e-5
+    263, 1.404e-5
+    343, 1.508e-5
+    423, 1.582e-5
+    503, 1.638e-5
+    583, 1.682e-5
+    663, 1.720e-5
+    743, 1.755e-5
+    823, 1.790e-5
+    903, 1.824e-5
+    983, 1.856e-5
+    1063, 1.880e-5
+    1143, 1.892e-5
+Reference temperature, CTE [K]:	293.1
+Tensile modulus with temperature [K], [Pa]:	
+    22.95, 2.123e+11
+    106.3, 2.078e+11
+    189.7, 2.030e+11
+    273, 1.979e+11
+    356.3, 1.924e+11
+    439.6, 1.867e+11
+    523, 1.806e+11
+    606.3, 1.742e+11
+    689.6, 1.675e+11
+    773, 1.605e+11
+Tensile strength, ultimate with temperature [K], [Pa]:	
+    0, 1.287e+9
+    117.2, 9.867e+8
+    263.2, 6.128e+8
+    325.6, 4.803e+8
+    398.3, 3.981e+8
+    479.8, 3.674e+8
+    602.2, 3.622e+8
+    698.5, 3.615e+8
+    788.3, 3.432e+8
+    884.4, 3.044e+8
+    962.5, 2.494e+8
+    1085, 1.407e+8
+Maximum service temperature [K]:	650.8
+Tensile strength, yield with temperature [K], [Pa]:	
+    82.95, 4.576e+8
+    138.7, 3.881e+8
+    194.6, 3.332e+8
+    250.4, 2.842e+8
+    306.2, 2.369e+8
+    362, 1.921e+8
+    417.7, 1.578e+8
+    473.5, 1.375e+8
+    529.3, 1.261e+8
+    585.2, 1.205e+8
+    640.8, 1.184e+8
+    696.6, 1.176e+8
+    752.4, 1.166e+8
+    808.2, 1.142e+8
+    864, 1.097e+8
+    919.8, 1.028e+8
+    975.6, 93630000
+    1031, 82880000
+    1087, 71570000
+    1143, 61170000
+UNS number:	S30100
+Equivalents:	Imphy; Nirosta; Puro; Spartan Redheugh; Uniloy
+Specific heat capacity [J/kg.°C]:	490.7
+Tensile elongation [strain]:	0.3464
+Designation:	Stainless steel, austenitic, AISI 301, annealed, wrought
+Density [kg/m^3]:	7916
+Composition:	Fe71-78 / Cr16-18 / Ni6-8 (impurities: Mn<2, Si<1, C<0.15, P<0.045, S<0.03)
+Poisson's ratio:	0.2755
+Base material:	Fe (Iron)
+Condition:	Solution annealed
+Specific heat capacity with temperature [K], [J/kg.°C]:	
+    72.95, 294.9
+    204.1, 402.6
+    335.2, 477.7
+    466.3, 527.2
+    597.4, 558
+    728.5, 577.3
+    859.6, 592
+    990.7, 609.2
+    1122, 635.8
+    1253, 679
+Thermal conductivity with temperature [K], [W/m.°C]:	
+    142.9, 11.35
+    199.3, 12.81
+    255.6, 14.27
+    312, 15.72
+    367.3, 17.08
+    383.2, 17.52
+    411.5, 16.84
+    480.8, 17.85
+    537.2, 18.71
+    593.5, 19.55
+    649.8, 20.35
+    706.1, 21.12
+    762.4, 21.86
+    818.7, 22.56
+    875.2, 23.24
+    931.4, 23.89
+    987.7, 24.5
+    1044, 25.09
+    1100, 25.64
+    1157, 26.16
+    1213, 26.65
+Electrical conductivity [Siemens/m]:	1413000
+Tangent modulus [Pa]:	1.390e+9
+Electrical conductivity with temperature [K], [Siemens/m]:	
+    293, 1394000
+    339.3, 1322000
+    385.6, 1259000
+    432, 1205000
+    478.2, 1156000
+    524.5, 1113000
+    570.8, 1075000
+    617.2, 1041000
+    663.5, 1010000
+    709.8, 981700
+    756.1, 955900
+    802.4, 932300
+    848.7, 910600
+    895.2, 890500
+    941.4, 871900
+    987.7, 854500
+    1034, 838100
+    1080, 822800
+    1127, 808300
+    1173, 794500
+-
+Only this first series will be imported:
+Fatigue S-N curve [cycles], [Pa]:	
+  Stress Ratio:	-1
+    1000, 4.421e+8
+    3162, 4.084e+8
+    10000, 3.781e+8
+    31620, 3.505e+8
+    100000, 3.252e+8
+    316200, 3.018e+8
+    1000000, 2.802e+8
+    3162000, 2.601e+8
+    10000000, 2.415e+8
+    31620000, 2.242e+8
+    1.000e+8, 2.082e+8
+-
+Delete any series above to import this one:
+Fatigue S-N curve [cycles], [Pa]:	
+  Stress Ratio:	0
+    1000, 2.406e+8
+    3162, 2.303e+8
+    10000, 2.203e+8
+    31620, 2.106e+8
+    100000, 2.012e+8
+    316200, 1.920e+8
+    1000000, 1.830e+8
+    3162000, 1.742e+8
+    10000000, 1.657e+8
+    31620000, 1.573e+8
+    1.000e+8, 1.493e+8
+-
+Delete any series above to import this one:
+Fatigue S-N curve [cycles], [Pa]:	
+  Stress Ratio:	0.5
+    1000, 1.259e+8
+    3162, 1.230e+8
+    10000, 1.201e+8
+    31620, 1.172e+8
+    100000, 1.142e+8
+    316200, 1.112e+8
+    1000000, 1.081e+8
+    3162000, 1.050e+8
+    10000000, 1.018e+8
+    31620000, 98610000
+    1.000e+8, 95370000
+Electrical resistivity with temperature [K], [ohm.m]:	
+    293, 7.174e-7
+    339.3, 7.564e-7
+    385.6, 7.943e-7
+    432, 8.299e-7
+    478.2, 8.651e-7
+    524.5, 8.985e-7
+    570.8, 9.302e-7
+    617.2, 9.606e-7
+    663.5, 9.901e-7
+    709.8, 1.019e-6
+    756.1, 1.046e-6
+    802.4, 1.073e-6
+    848.7, 1.098e-6
+    895.2, 1.123e-6
+    941.4, 1.147e-6
+    987.7, 1.170e-6
+    1034, 1.193e-6
+    1080, 1.215e-6
+    1127, 1.237e-6
+    1173, 1.259e-6
+Electrical resistivity [1/Siemens/m]:	7.077e-7
+Electrical resistivity with temperature [K], [1/Siemens/m]:	
+    293, 7.174e-7
+    339.3, 7.564e-7
+    385.6, 7.943e-7
+    432, 8.299e-7
+    478.2, 8.651e-7
+    524.5, 8.985e-7
+    570.8, 9.302e-7
+    617.2, 9.606e-7
+    663.5, 9.901e-7
+    709.8, 1.019e-6
+    756.1, 1.046e-6
+    802.4, 1.073e-6
+    848.7, 1.098e-6
+    895.2, 1.123e-6
+    941.4, 1.147e-6
+    987.7, 1.170e-6
+    1034, 1.193e-6
+    1080, 1.215e-6
+    1127, 1.237e-6
+    1173, 1.259e-6
+

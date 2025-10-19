@@ -1,0 +1,177 @@
+
+Record name:	Aluminum, 2024, O
+Record origin:	In-house data
+Data source:	Exported from Granta EduPack 2022 R2
+Table: MaterialUniverse
+Record: Aluminum, 2024, O
+Tensile modulus [Pa]:	7.497e+10
+Tensile strength, yield [Pa]:	74890000
+Tensile strength, ultimate [Pa]:	1.848e+8
+Thermal conductivity [W/m.°C]:	193
+Electrical resistivity [ohm.m]:	3.699e-8
+Thermal expansion coefficient [strain/°C]:	2.309e-5
+Thermal expansion coefficient with temperature [K], [strain/°C]:	
+    3.05, 1.387e-5
+    86.35, 1.823e-5
+    169.6, 2.110e-5
+    253, 2.290e-5
+    336.3, 2.403e-5
+    419.6, 2.481e-5
+    503, 2.547e-5
+    586.3, 2.620e-5
+    669.7, 2.712e-5
+    753, 2.827e-5
+Reference temperature, CTE [K]:	293.1
+Tensile modulus with temperature [K], [Pa]:	
+    3.05, 8.104e+10
+    58.05, 8.057e+10
+    113.1, 7.933e+10
+    168.1, 7.763e+10
+    223, 7.570e+10
+    278, 7.370e+10
+    333, 7.170e+10
+    388, 6.969e+10
+    443, 6.758e+10
+    498, 6.520e+10
+    553, 6.231e+10
+    608, 5.855e+10
+    663, 5.354e+10
+    718, 4.675e+10
+    773, 3.764e+10
+Maximum service temperature [K]:	457.9
+UNS number:	A92024
+Equivalents:	Alcan; Aludur; Avional; Kaiser Aluminum; Lennedur
+Specific heat capacity [J/kg.°C]:	875.3
+Tensile elongation [strain]:	0.1994
+Designation:	Aluminum, 2024, O, wrought
+Density [kg/m^3]:	2770
+Composition:	Al91-95 / Cu3.8-4.9 / Mg1.2-1.8 / Mn0.3-0.9 (impurities: Fe<0.5, Si<0.5, Zn<0.25, Ti<0.15, Cr<0.1, Other<0.15)
+Poisson's ratio:	0.33
+Base material:	Al (Aluminum)
+Condition:	O (Annealed)
+Specific heat capacity with temperature [K], [J/kg.°C]:	
+    122.9, 581.7
+    186.3, 710.6
+    249.7, 803.8
+    313, 869.2
+    376.4, 914.6
+    439.6, 948
+    503, 977.4
+    566.3, 1011
+    629.7, 1056
+    693, 1121
+Electrical conductivity [Siemens/m]:	27050000
+Tangent modulus [Pa]:	7.490e+8
+Electrical conductivity with temperature [K], [Siemens/m]:	
+    12.95, 91580000
+    27.75, 89900000
+    42.45, 85420000
+    57.25, 79100000
+    71.95, 72220000
+    86.65, 65480000
+    101.4, 59210000
+    116.2, 53640000
+    130.9, 48730000
+    145.6, 44480000
+    160.4, 40810000
+    175.1, 37650000
+    189.8, 34950000
+    204.6, 32630000
+    219.3, 30650000
+    234.1, 28950000
+    248.8, 27530000
+    263.5, 26320000
+    278.3, 25330000
+    293, 24510000
+    298.1, 24220000
+-
+Only this first series will be imported:
+Fatigue S-N curve [cycles], [Pa]:	
+  Stress Ratio:	-1
+    1000, 1.050e+8
+    3162, 92980000
+    10000, 82540000
+    31620, 73390000
+    100000, 65320000
+    316200, 58160000
+    1000000, 51800000
+    3162000, 46140000
+    10000000, 41110000
+    31620000, 36620000
+    1.000e+8, 32630000
+-
+Delete any series above to import this one:
+Fatigue S-N curve [cycles], [Pa]:	
+  Stress Ratio:	0
+    1000, 66930000
+    3162, 61820000
+    10000, 57020000
+    31620, 52500000
+    100000, 48230000
+    316200, 44220000
+    1000000, 40440000
+    3162000, 36910000
+    10000000, 33610000
+    31620000, 30560000
+    1.000e+8, 27720000
+-
+Delete any series above to import this one:
+Fatigue S-N curve [cycles], [Pa]:	
+  Stress Ratio:	0.5
+    1000, 38800000
+    3162, 37030000
+    10000, 35250000
+    31620, 33470000
+    100000, 31680000
+    316200, 29890000
+    1000000, 28120000
+    3162000, 26360000
+    10000000, 24640000
+    31620000, 22950000
+    1.000e+8, 21320000
+Electrical resistivity with temperature [K], [ohm.m]:	
+    12.95, 1.092e-8
+    27.75, 1.112e-8
+    42.45, 1.171e-8
+    57.25, 1.264e-8
+    71.95, 1.385e-8
+    86.65, 1.527e-8
+    101.4, 1.689e-8
+    116.2, 1.864e-8
+    130.9, 2.052e-8
+    145.6, 2.248e-8
+    160.4, 2.45e-8
+    175.1, 2.656e-8
+    189.8, 2.861e-8
+    204.6, 3.065e-8
+    219.3, 3.263e-8
+    234.1, 3.454e-8
+    248.8, 3.632e-8
+    263.5, 3.799e-8
+    278.3, 3.948e-8
+    293, 4.08e-8
+    298.1, 4.128e-8
+Electrical resistivity [1/Siemens/m]:	3.697e-8
+Electrical resistivity with temperature [K], [1/Siemens/m]:	
+    12.95, 1.092e-8
+    27.75, 1.112e-8
+    42.45, 1.171e-8
+    57.25, 1.264e-8
+    71.95, 1.385e-8
+    86.65, 1.527e-8
+    101.4, 1.689e-8
+    116.2, 1.864e-8
+    130.9, 2.052e-8
+    145.6, 2.248e-8
+    160.4, 2.45e-8
+    175.1, 2.656e-8
+    189.8, 2.861e-8
+    204.6, 3.065e-8
+    219.3, 3.263e-8
+    234.1, 3.454e-8
+    248.8, 3.632e-8
+    263.5, 3.799e-8
+    278.3, 3.948e-8
+    293, 4.08e-8
+    298.1, 4.128e-8
+
