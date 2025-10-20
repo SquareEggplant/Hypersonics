@@ -32,7 +32,7 @@ end
 %% 1-Dimensional Implicit Heat Analysis with conduction, convection, and radiation
 clear;
 
-mode = 1
+mode = 1 % mode = 0 for steady state, mode = 1 for transient
 % Access Material Properties
 inputfile = 'graphiteParaPlane.txt';
 fig = 1;
