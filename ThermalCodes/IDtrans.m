@@ -32,7 +32,7 @@ end
 %% 1-Dimensional Implicit Heat Analysis with conduction, convection, and radiation
 clear;
 
-mode = 1 % mode = 0 for steady state, mode = 1 for transient
+mode = 1; % mode = 0 for steady state, mode = 1 for transient
 % Access Material Properties
 inputfile = 'graphiteParaPlane.txt';
 fig = 1;
@@ -135,11 +135,11 @@ if mode == 1
 	[x,t] = meshgrid(linspace(0,L,Nx),linspace(0,time,Nt));
 	surf(x,t,T_history'); hold on
 	colormap turbo;
-	tplane = surf(x, t, data.MaximumServiceTemperature_K_*ones(size(x)), 'FaceAlpha', 0.9, 'EdgeColor', 'none', 'FaceColor', 'cyan');
+	tplane = surf(x, t, data.MaximumServiceTemperature_K_*ones(size(x)), 'FaceAlpha', 0.7, 'EdgeColor', 'black', 'FaceColor', 'cyan');
 	xlabel('Position [m]');
 	ylabel('Time [s]');
 	zlabel('Temperature [K]');
-	title('1D Transient Heat Transfer');
+	title('Material: ', data.RecordName, ' Thermal conductivity [W/m-C]: ', data.ThermalConductivity_W_m__C_);
 	colorbar('eastoutside');
 	shading interp;
 elseif mode == 0
@@ -150,13 +150,13 @@ elseif mode == 0
 	title('1D Transient Heat Transfer');
 end
 
-
 % Plot Heat Flux vs Time
 figure;
 t1 = linspace(0,time,Nt);
 plot(t1,qddot1)
 xlabel('Time [s]')
 ylabel('Heat Flux [W/m^2]')
+title('Heat Flux over Time')
 xlim([-10,time])
 % %Plot Gamma vs Time
 % figure;
