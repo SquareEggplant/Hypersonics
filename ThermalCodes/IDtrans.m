@@ -34,7 +34,7 @@ clear;
 
 mode = 1; % mode = 0 for steady state, mode = 1 for transient
 % Access Material Properties
-inputfile = 'graphiteParaPlane.txt';
+inputfile = 'CarbonCeramic.txt';
 fig = 1;
 fidmat = fopen(inputfile,'r');
 data = struct;
@@ -63,13 +63,13 @@ end
 cpfit = polyfit(tcp1(:,1),tcp1(:,3),10); % Fits a function to specific heat capacity, cp based on temperature
 cvfit = polyfit(tcp1(:,1),tcp1(:,2),10); % Fits a function to specific heat capacity, cv based on temperature
 alpha = data.ThermalConductivity_W_m__C_/(data.Density_kg_m_3_*data.SpecificHeatCapacity_J_kg__C_); % Thermal diffusivity [m^2/s]
-[altitude,rhofit,tempfit,localM,pfit] = altgen('thermal_team_data1.csv');
+[altitude,rhofit,tempfit,localM,pfit] = altgen('thermal_team_data.csv');
 eps = 0.9; % Emissivity of Material
 sig = 5.67e-8; % Stefan-Boltzmann Constant
 % Time and Spatial Step Initialization
 L = 0.1; % Characteristic Length
 radius = 0.002; % Nose Radius
-Nx = 100; % # of Spatial Partitions
+Nx = 1000; % # of Spatial Partitions
 dx = L/(Nx-1); % Spatial Steps
 time = altitude(end,1); % Time [s]
 Fo = 0.3; % Fourier Number
@@ -139,7 +139,8 @@ if mode == 1
 	xlabel('Position [m]');
 	ylabel('Time [s]');
 	zlabel('Temperature [K]');
-	title('Material: ', data.RecordName, ' Thermal conductivity [W/m-C]: ', data.ThermalConductivity_W_m__C_);
+	title(sprintf('Material: %s', data.RecordName));
+    subtitle(sprintf('Max Service Temperature [K]: %.2f', data.MaximumServiceTemperature_K_));
 	colorbar('eastoutside');
 	shading interp;
 elseif mode == 0
@@ -158,6 +159,7 @@ xlabel('Time [s]')
 ylabel('Heat Flux [W/m^2]')
 title('Heat Flux over Time')
 xlim([-10,time])
+
 % %Plot Gamma vs Time
 % figure;
 % y = linspace(1.5,1.6,100);
