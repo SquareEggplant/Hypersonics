@@ -1,1 +1,1 @@
-
+Folder of thermally tested materials from ANSYS Granta EduPack 2022
