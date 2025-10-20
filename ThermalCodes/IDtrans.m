@@ -32,6 +32,7 @@ end
 %% 1-Dimensional Implicit Heat Analysis with conduction, convection, and radiation
 clear;
 
+mode = 1
 % Access Material Properties
 inputfile = 'graphiteParaPlane.txt';
 fig = 1;
@@ -119,7 +120,7 @@ for p = 1:Nt
         % Update the Internal Nodes
         T_new(i) = Fo*(T(i+1)+T(i-1)) + (1-2*Fo)*T(i);
     end
-    % Update convective end BC
+    % Update conductive end BC
     T_new(Nx) = 288.16;%T(Nx) + 2*Fo*(T(Nx-1)-T(Nx));
     % Update for Next Time Step
     T = T_new;
@@ -130,20 +131,25 @@ for p = 1:Nt
     qddot1(p,1) = qddot;
 end
 % Plot Temperature vs Time
-% Uncomment meshgrid and surf when doing material analysis
-% Uncomment x linspace and plot when looking at steady state
-[x,t] = meshgrid(linspace(0,L,Nx),linspace(0,time,Nt));
-surf(x,t,T_history'); hold on
-%x = linspace(0,L,Nx);
-%plot(x,T_history(:,end))
-colormap turbo;
-tplane = surf(x, t, data.MaximumServiceTemperature_K_*ones(size(x)), 'FaceAlpha', 0.9, 'EdgeColor', 'none', 'FaceColor', 'cyan');
-xlabel('Position [m]');
-ylabel('Time [s]');
-zlabel('Temperature [K]');
-title('1D Transient Heat Transfer');
-colorbar('eastoutside');
-shading interp;
+if mode == 1
+	[x,t] = meshgrid(linspace(0,L,Nx),linspace(0,time,Nt));
+	surf(x,t,T_history'); hold on
+	colormap turbo;
+	tplane = surf(x, t, data.MaximumServiceTemperature_K_*ones(size(x)), 'FaceAlpha', 0.9, 'EdgeColor', 'none', 'FaceColor', 'cyan');
+	xlabel('Position [m]');
+	ylabel('Time [s]');
+	zlabel('Temperature [K]');
+	title('1D Transient Heat Transfer');
+	colorbar('eastoutside');
+	shading interp;
+elseif mode == 0
+	x = linspace(0,L,Nx);
+	plot(x,T_history(:,end))
+	xlabel('Position [m]')
+	ylabel('Temperature [K]')
+	title('1D Transient Heat Transfer');
+end
+
 
 % Plot Heat Flux vs Time
 figure;
