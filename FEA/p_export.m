@@ -56,7 +56,7 @@ end
 q_e = 0.5*rho_e.*v_mag.^2;
 Tau_w = cfc.*q_e;					% Wall shear stress
 Cp = y*Rgas/(y-1);
-q_w = Cp./v_mag.*(T_aw - T_w).*F_RA.*Tau_w;
+q_w = -Cp./v_mag.*(T_aw - T_w).*F_RA.*Tau_w;
 % Define invalid mask
 invalid_idx = (norms(:,1) == 1) | (T_e == 0);
 % Set invalid entries to 0 or NaN (your choice)
@@ -172,5 +172,5 @@ axis equal; colorbar;
 xlabel('X'); ylabel('Y'); zlabel('Z');
 title('Convective Heat Flux Field on Mesh');
 % Set scale
-clim(prctile(mappedHeatFlux, [10 90]));
+clim(prctile(mappedHeatFlux, [5 95]));
 colormap(turbo)
