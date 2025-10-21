@@ -1,1 +1,17 @@
 # List of untracked files to ignore
+# MATLAB project metadata and build
+resources/
+slprj/
+sccprj/
+codegen/
+
+# Autosaves and temp
+*.asv
+*.m~
+*.mlx.autosave
+*.autosave
+
+# Binaries and platform cruft
+*.mex*
+*.mat
+.DS_Store
