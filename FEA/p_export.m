@@ -128,7 +128,6 @@ idx = knnsearch(centroids, stlCentroidsAligned);
 mappedPressures = P_e(idx);
 mappedHeatFlux = q_w(idx);
 
-1+3
 %% Diagnostics
 fprintf('Unique CFD centroids: %d\n', length(unique(round(centroids,6),'rows')));
 fprintf('Unique STL centroids: %d\n', length(unique(round(stlCentroidsAligned,6),'rows')));
