@@ -9,6 +9,7 @@ altitude = zeros(size(altime,1),size(altime,2)); % Creates a new matrix to fill 
 for i = 1:size(altime,2)
    altitude(:,i) = altime(:,i);
 end
+% Blah blah
 % Loops through each row of the altitude matrix
 % Using the atmospheric model from NASA we can calculate the atmospheric
 % pressure at all altitudes
