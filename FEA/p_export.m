@@ -99,7 +99,7 @@ legend('CFD centroids','Aligned STL centroids');
 title('CFD vs STL alignment check');
 
 %% --- Mirror Across Z-axis (symmetry fill) ---
-1+2
+
 % Positive-Z side assumed to have CFD data
 posMask = centroids(:,1) >= 0;
 posNodes = centroids(posMask,:);
