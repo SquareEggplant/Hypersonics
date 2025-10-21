@@ -2,9 +2,9 @@
 clear; clc; close all;
 
 %% File Names
-vtkFile   = 'vsurf00010000.vtk';
+vtkFile   = 'surf_000034193.vtk';
 inputFile = 'input (1).sdf';
-stlFile   = 'NewPointTest_round.stl';
+stlFile   = 'Odd_seed_Point_101_round.stl';
 csvPressureOut    = 'pressure_mach5dot5.csv';
 csvHeatFluxOut    = 'heatflux_mach5dot5.csv';
 
