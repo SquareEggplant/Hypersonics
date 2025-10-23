@@ -1,40 +1,9 @@
-function [altitude,rhofit,tempfit,localM,pfit] = altgen(inputfile)
-% Access Altitude Data
-data = readtable(inputfile);
-% Step 2: Remove rows with NaN values
-cleanedData = rmmissing(data);
-altime = table2array(cleanedData); % Convert table data to a readable matrix
-altitude = zeros(size(altime,1),size(altime,2)); % Creates a new matrix to fill with atmospheric data
-% Loads all of the .csv data into the altitude matrix
-for i = 1:size(altime,2)
-   altitude(:,i) = altime(:,i);
-end
-% Loops through each row of the altitude matrix
-% Using the atmospheric model from NASA we can calculate the atmospheric
-% pressure at all altitudes
-for i = 1:size(altitude,1)
-   if altitude(i,2) <= 11000 && altitude(i,2) >= 0
-    %altitude(i,7) = (15.04-0.00649*altitude(i,2))+273.15; % Temperature [K]
-    altitude(i,4) = (101.29*((altitude(i,7))/288.08)^5.256)*10^3; % Pressure [kPa]
-   elseif altitude(i,2) > 11000 && altitude(i,2) <= 25000
-    %altitude(i,7) = 216.69; % Temperature [K]
-    altitude(i,4) = (22.65*exp(1.73-0.000157*altitude(i,2)))*10^3; % Pressure [kPa]
-   else
-    %altitude(i,7) = (-131.21 + 0.00299*altitude(i,2))+273.15; % Temperature [K]
-    altitude(i,4) = (2.488*(altitude(i,7))^-11.388)*10^3; % Pressure [kPa]
-   end
-end
-rhofit = polyfit(altitude(:,1),altitude(:,6),10); % Fits a function to the air density with respect to the trajectory timescale
-tempfit = polyfit(altitude(:,1),altitude(:,7),22); % Fits a function to the air temperature with respect to the trajectory timescale
-localM = polyfit(altitude(:,1),altitude(:,3),14); % Fits a function to the Mach number with respect to the trajectory timescale
-pfit = polyfit(altitude(:,1),altitude(:,4),14); % Fits a function to the air pressure with respect to the trajectory timescale
-end
 %% 1-Dimensional Implicit Heat Analysis with conduction, convection, and radiation
 clear;
 
 mode = 1; % mode = 0 for steady state, mode = 1 for transient
 % Access Material Properties
-inputfile = 'CarbonCeramic.txt';
+inputfile = 'Materials/CarbonCeramic.txt';
 fig = 1;
 fidmat = fopen(inputfile,'r');
 data = struct;
@@ -54,7 +23,7 @@ if contains(line, ':')  % Only process lines with key-value pairs
 end
 end
 % Accesses specific heat data based on temperature
-mcp = readmatrix('N2O.txt');
+mcp = readmatrix('Air_Mixtures/N2O.txt');
 tcp1 = mcp;
 for i = 1:size(mcp,1)
     tcp1(i,2) = mcp(i,2)*1000;
@@ -174,3 +143,35 @@ xlim([-10,time])
 % xlabel('Time [s]')
 % ylabel('Gamma')
 % ylim([1.4 1.7])
+
+function [altitude,rhofit,tempfit,localM,pfit] = altgen(inputfile)
+% Access Altitude Data
+data = readtable(inputfile);
+% Step 2: Remove rows with NaN values
+cleanedData = rmmissing(data);
+altime = table2array(cleanedData); % Convert table data to a readable matrix
+altitude = zeros(size(altime,1),size(altime,2)); % Creates a new matrix to fill with atmospheric data
+% Loads all of the .csv data into the altitude matrix
+for i = 1:size(altime,2)
+   altitude(:,i) = altime(:,i);
+end
+% Loops through each row of the altitude matrix
+% Using the atmospheric model from NASA we can calculate the atmospheric
+% pressure at all altitudes
+for i = 1:size(altitude,1)
+   if altitude(i,2) <= 11000 && altitude(i,2) >= 0
+    %altitude(i,7) = (15.04-0.00649*altitude(i,2))+273.15; % Temperature [K]
+    altitude(i,4) = (101.29*((altitude(i,7))/288.08)^5.256)*10^3; % Pressure [kPa]
+   elseif altitude(i,2) > 11000 && altitude(i,2) <= 25000
+    %altitude(i,7) = 216.69; % Temperature [K]
+    altitude(i,4) = (22.65*exp(1.73-0.000157*altitude(i,2)))*10^3; % Pressure [kPa]
+   else
+    %altitude(i,7) = (-131.21 + 0.00299*altitude(i,2))+273.15; % Temperature [K]
+    altitude(i,4) = (2.488*(altitude(i,7))^-11.388)*10^3; % Pressure [kPa]
+   end
+end
+rhofit = polyfit(altitude(:,1),altitude(:,6),10); % Fits a function to the air density with respect to the trajectory timescale
+tempfit = polyfit(altitude(:,1),altitude(:,7),22); % Fits a function to the air temperature with respect to the trajectory timescale
+localM = polyfit(altitude(:,1),altitude(:,3),14); % Fits a function to the Mach number with respect to the trajectory timescale
+pfit = polyfit(altitude(:,1),altitude(:,4),14); % Fits a function to the air pressure with respect to the trajectory timescale
+end
