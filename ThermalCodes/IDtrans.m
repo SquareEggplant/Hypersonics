@@ -2,7 +2,7 @@
 clear;
 
 % Access Material Properties
-inputfile = 'graphiteParaPlane.txt';
+inputfile = 'Materials/graphiteParaPlane.txt';
 fig = 1;
 fidmat = fopen(inputfile,'r');
 data = struct;
@@ -23,7 +23,7 @@ end
 end
 
 % Accesses specific heat data based on temperature
-mcp = readmatrix('N2.txt');
+mcp = readmatrix('Air_Mixtures/N2O.txt');
 tcp1 = mcp;
 for i = 1:size(mcp,1)
     tcp1(i,2) = mcp(i,3)*1000/28;
@@ -32,7 +32,7 @@ end
 cpfit = polyfit(tcp1(:,1),tcp1(:,2),10); % Fits a function to specific heat capacity, cp based on temperature
 cvfit = polyfit(tcp1(:,1),tcp1(:,2),10); % Fits a function to specific heat capacity, cv based on temperature
 alpha = data.ThermalConductivity_W_m__C_/(data.Density_kg_m_3_*data.SpecificHeatCapacity_J_kg__C_); % Thermal diffusivity [m^2/s]
-[altitude,rhofit,tempfit,localM,pfit] = altgen('thermal_team_data1.csv');
+[altitude,rhofit,tempfit,localM,pfit] = altgen('thermal_team_data.csv');
 eps = 0.5;        % Emissivity of Material
 sig = 5.67e-8;    % Stefan-Boltzmann Constant
 % Time and Spatial Step Initialization
