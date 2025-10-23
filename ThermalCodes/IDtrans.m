@@ -33,7 +33,7 @@ end
 clear;
 
 % Access Material Properties
-inputfile = 'siliconCarbide.txt';
+inputfile = 'graphiteParaPlane.txt';
 fig = 1;
 fidmat = fopen(inputfile,'r');
 data = struct;
@@ -52,6 +52,7 @@ if contains(line, ':')  % Only process lines with key-value pairs
   end
 end
 end
+
 % Accesses specific heat data based on temperature
 mcp = readmatrix('N2.txt');
 tcp1 = mcp;
@@ -63,31 +64,32 @@ cpfit = polyfit(tcp1(:,1),tcp1(:,2),10); % Fits a function to specific heat capa
 cvfit = polyfit(tcp1(:,1),tcp1(:,2),10); % Fits a function to specific heat capacity, cv based on temperature
 alpha = data.ThermalConductivity_W_m__C_/(data.Density_kg_m_3_*data.SpecificHeatCapacity_J_kg__C_); % Thermal diffusivity [m^2/s]
 [altitude,rhofit,tempfit,localM,pfit] = altgen('thermal_team_data1.csv');
-eps = 0.5; % Emissivity of Material
-sig = 5.67e-8; % Stefan-Boltzmann Constant
+eps = 0.5;        % Emissivity of Material
+sig = 5.67e-8;    % Stefan-Boltzmann Constant
 % Time and Spatial Step Initialization
-L = 0.1; % Characteristic Length
-radius = 0.002; % Nose Radius
-Nx = 100; % # of Spatial Partitions
-dx = L/(Nx-1); % Spatial Steps
+L = 0.1;          % Characteristic Length
+radius = 0.002;   % Nose Radius
+Nx = 100;         % # of Spatial Partitions
+dx = L/(Nx-1);    % Spatial Steps
 time = altitude(end,1); % Time [s]
-Fo = 0.3; % Fourier Number
+Fo = 0.3;         % Fourier Number
 dt = dx^2*Fo/alpha; % Time Steps
 Nt = ceil(time/dt); % # of Time Partitions
 
 % Parameters
-T_inf = altitude(1,7); % Initial Ambient Temperature [K]
-T = zeros(Nx,1) + T_inf; % Initial Temperature Profile (ITP)
-T_new = T; % Updated Temperature Profile (Initially the same as T)
-T_history = zeros(Nx,Nt); % Temperature profile across all time
-T_history(:,1) = T; % Initially set the first column to the ITP
+T_inf = altitude(1,7);        % Initial Ambient Temperature [K]
+T = zeros(Nx,1) + T_inf;      % Initial Temperature Profile (ITP)
+T_new = T;                    % Updated Temperature Profile (Initially the same as T)
+T_history = zeros(Nx,Nt);     % Temperature profile across all time
+T_history(:,1) = T;           % Initially set the first column to the ITP
 Pr = 0.71;                    % Prandtl Number
 r = 1;                        % Recovery Factor
-RgasAir = 296.8;             % Gas specific constant [J/kg-K]
+RgasAir = 296.8;              % Gas specific constant [J/kg-K]
 p_inf = altitude(1,4);        % Freestream Pressure [Pa]
 rho_inf = altitude(1,6);      % Freestream Density [kg/m^3]
 qddot1 = zeros(Nt,1);         % Heat Flux Check
 gamma1 = qddot1;              % Gamma Check
+
 % Temperature Profile Loop
 Cf = 0.002;
 for p = 1:Nt
@@ -116,8 +118,8 @@ for p = 1:Nt
         Fra = 1.2;
     end
     tau_w = Cf*qe;
-    qconv = Fra*tau_w*polyval(cpfit,T(1))*(Taw-T(1))/ue;
-    %qconv = 0.763*Pr^(-0.6)*(rhoe*mue)^0.5*(h_aw-h_w)*sqrt(dudx);
+    %qconv = Fra*tau_w*polyval(cpfit,T(1))*(Taw-T(1))/ue;
+    qconv = 0.57*Pr^(-0.6)*(rhoe*mue)^0.5*(h_aw-h_w)*sqrt(dudx);
     qcond = T(2)-T(1);
     qrad = sig*eps*T(1)^4;
     qddot = qconv-qrad;
@@ -139,6 +141,7 @@ for p = 1:Nt
 end
 
 mode = 1; % mode = 0 for steady state, mode = 1 for transient
+
 % Plot Temperature vs Time
 if mode == 1
 	[x,t] = meshgrid(linspace(0,L,Nx),linspace(0,time,Nt));
@@ -160,9 +163,11 @@ elseif mode == 0
 	ylabel('Temperature [K]')
 	title('1D Transient Heat Transfer');
 end
+figure;
+tiledlayout(2,3);
 
 % Plot Heat Flux vs Time
-figure;
+nexttile;
 t1 = linspace(0,time,Nt);
 plot(t1,qddot1)
 xlabel('Time [s]')
@@ -170,17 +175,32 @@ ylabel('Heat Flux [W/m^2]')
 title('Heat Flux over Time')
 xlim([-10,time])
 
-% %Plot Gamma vs Time
-% figure;
-% y = linspace(1.35,1.45,100);
-% plot(t1,gamma1,'r-','LineWidth',2); hold on
-% 
-% % Create patch coordinates
-% x_patch = [min(t1), max(t1), max(t1), min(t1)];
-% y_patch = [min(y), min(y), max(y), max(y)];
-% 
-% % Add translucent horizontal band
-% patch(x_patch, y_patch, 'yellow', 'FaceAlpha', 0.3, 'EdgeColor', 'none');
-% xlabel('Time [s]')
-% ylabel('Gamma')
-% ylim([1.2 1.6])
+% Plot Gamma vs Time
+nexttile;
+y = linspace(1.397,1.402,100);
+plot(t1,gamma1,'r-','LineWidth',2); hold on
+title('Gamma over Time')
+
+% Create patch coordinates
+x_patch = [min(t1), max(t1), max(t1), min(t1)];
+y_patch = [min(y), min(y), max(y), max(y)];
+
+% Add translucent horizontal band
+patch(x_patch, y_patch, 'yellow', 'FaceAlpha', 0.3, 'EdgeColor', 'none');
+xlabel('Time [s]')
+ylabel('Gamma')
+ylim([1.39 1.41])
+
+% Plot Altitude vs Time
+nexttile;
+plot(altitude(:,1),altitude(:,2),'b-');
+xlabel('Time [s]')
+ylabel('Altitude [m]')
+title('Altitude over Time')
+
+% Plot Mach Number vs Time
+nexttile;
+plot(altitude(:,1),altitude(:,3),'r-','LineWidth',2);
+xlabel('Time [s]')
+ylabel('Mach Number')
+title('Mach Number over Time')
