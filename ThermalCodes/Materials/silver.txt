@@ -1,0 +1,72 @@
+
+Record name:	Silver, commercial purity, fine, cold worked, hard
+Record origin:	In-house data
+Data source:	Exported from Granta EduPack 2022 R2
+Table: MaterialUniverse
+Record: Silver, commercial purity, fine, cold worked, hard
+Tensile modulus [Pa]:	7.097e+10
+Tensile strength, yield [Pa]:	2.387e+8
+Tensile strength, ultimate [Pa]:	2.944e+8
+Thermal conductivity [W/m.°C]:	419
+Electrical resistivity [ohm.m]:	1.739e-8
+Thermal expansion coefficient [strain/°C]:	1.970e-5
+Maximum service temperature [K]:	414
+UNS number:	
+Equivalents:	ESPI; Fasaloy; Fine
+Specific heat capacity [J/kg.°C]:	234.9
+Tensile elongation [strain]:	0.01414
+Designation:	Silver, commercial purity, fine, cold worked, hard (ASTM B742-90)
+Density [kg/m^3]:	10480
+Composition:	Ag99.9-100 (impurities: Cu<0.1, Pb<0.025, Cd<0.005, Fe<0.005, Zn<0.005, Al<0.002, Ni<0.002, Bi<0.001)
+Poisson's ratio:	0.39
+Base material:	Ag (Silver)
+Condition:	Hard
+Electrical conductivity [Siemens/m]:	57460000
+Tangent modulus [Pa]:	3.120e+9
+-
+Only this first series will be imported:
+Fatigue S-N curve [cycles], [Pa]:	
+  Stress Ratio:	-1
+    1000, 2.104e+8
+    3162, 1.990e+8
+    10000, 1.884e+8
+    31620, 1.785e+8
+    100000, 1.691e+8
+    316200, 1.602e+8
+    1000000, 1.519e+8
+    3162000, 1.439e+8
+    10000000, 1.364e+8
+    31620000, 1.292e+8
+    1.000e+8, 1.225e+8
+-
+Delete any series above to import this one:
+Fatigue S-N curve [cycles], [Pa]:	
+  Stress Ratio:	0
+    1000, 1.221e+8
+    3162, 1.182e+8
+    10000, 1.143e+8
+    31620, 1.106e+8
+    100000, 1.069e+8
+    316200, 1.033e+8
+    1000000, 99720000
+    3162000, 96220000
+    10000000, 92790000
+    31620000, 89420000
+    1.000e+8, 86130000
+-
+Delete any series above to import this one:
+Fatigue S-N curve [cycles], [Pa]:	
+  Stress Ratio:	0.5
+    1000, 66630000
+    3162, 65430000
+    10000, 64240000
+    31620, 63030000
+    100000, 61810000
+    316200, 60570000
+    1000000, 59320000
+    3162000, 58060000
+    10000000, 56790000
+    31620000, 55500000
+    1.000e+8, 54210000
+Electrical resistivity [1/Siemens/m]:	1.74e-8
+

@@ -1,0 +1,62 @@
+
+Record name:	Silicon carbide (sintered)
+Record origin:	In-house data
+Data source:	Exported from Granta EduPack 2022 R2
+Table: MaterialUniverse
+Record: Silicon carbide (sintered)
+Tensile modulus [Pa]:	4.000e+11
+Tensile strength, yield [Pa]:	3.200e+8
+Tensile strength, ultimate [Pa]:	3.200e+8
+Thermal conductivity [W/m.°C]:	122.5
+Electrical resistivity [ohm.m]:	56.21
+Dielectric constant:	7.937
+Dielectric loss tangent:	0.002236
+Thermal expansion coefficient [strain/°C]:	2.750e-6
+Thermal expansion coefficient with temperature [K], [strain/°C]:	
+    22.95, 8.688e-7
+    161.9, 1.576e-6
+    300.8, 2.733e-6
+    439.6, 3.489e-6
+    578.5, 3.695e-6
+    717.5, 3.837e-6
+    856.3, 3.998e-6
+    995.3, 4.146e-6
+    1134, 4.247e-6
+    1273, 4.372e-6
+Reference temperature, CTE [K]:	293.1
+Maximum service temperature [K]:	1773
+UNS number:	
+Equivalents:	Carborex; Carborundum; Moissanite
+Specific heat capacity [J/kg.°C]:	670
+Tensile elongation [strain]:	7.937e-4
+Designation:	Silicon carbide, sintered
+Density [kg/m^3]:	3098
+Composition:	SiC
+Poisson's ratio:	0.1396
+Base material:	Carbide
+Condition:	
+Specific heat capacity with temperature [K], [J/kg.°C]:	
+    102.9, 96.75
+    266.3, 609.8
+    429.6, 857.1
+    593, 1004
+    756.3, 1087
+    919.7, 1151
+    1083, 1215
+    1246, 1277
+    1410, 1339
+    1573, 1399
+Thermal conductivity with temperature [K], [W/m.°C]:	
+    273, 121.7
+    384.1, 102.7
+    495.3, 88.21
+    606.3, 77.68
+    717.5, 70.45
+    828.5, 65.88
+    939.7, 63.35
+    1051, 62.21
+    1162, 61.84
+    1273, 61.6
+Electrical conductivity [Siemens/m]:	0.01777
+Electrical resistivity [1/Siemens/m]:	56.26
+

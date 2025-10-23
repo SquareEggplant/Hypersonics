@@ -1,0 +1,26 @@
+
+Record name:	Carbon foam (reticulated, vitreous)(0.05)
+Record origin:	In-house data
+Data source:	Exported from Granta EduPack 2022 R2
+Table: MaterialUniverse
+Record: Carbon foam (reticulated, vitreous)(0.05)
+Tensile modulus [Pa]:	43840000
+Tensile strength, yield [Pa]:	240400
+Tensile strength, ultimate [Pa]:	240400
+Thermal conductivity [W/m.°C]:	0.06633
+Electrical resistivity [ohm.m]:	4.996e-4
+Thermal expansion coefficient [strain/°C]:	6.641e-7
+Maximum service temperature [K]:	588
+UNS number:	
+Equivalents:	DUOCEL RVC
+Specific heat capacity [J/kg.°C]:	1255
+Tensile elongation [strain]:	0.00545
+Designation:	Carbon foam, reticulated vitreous carbon foam (density 0.05)
+Density [kg/m^3]:	49.99
+Composition:	C
+Poisson's ratio:	0.1977
+Base material:	C (Carbon)
+Condition:	
+Electrical conductivity [Siemens/m]:	1999
+Electrical resistivity [1/Siemens/m]:	5.002e-4
+
