@@ -23,7 +23,7 @@ end
 end
 
 % Accesses specific heat data based on temperature
-mcp = readmatrix('Air_Mixtures/N2O.txt');
+mcp = readmatrix('Air_Mixtures/N2.txt');
 tcp1 = mcp;
 for i = 1:size(mcp,1)
     tcp1(i,2) = mcp(i,3)*1000/28;
