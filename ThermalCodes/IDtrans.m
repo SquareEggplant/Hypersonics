@@ -1,8 +1,49 @@
+function [altitude,rhofit,tempfit,localM,pfit] = altgen(inputfile)
+% Access Altitude Data
+data = readtable(inputfile);
+% Step 2: Remove rows with NaN values
+cleanedData = rmmissing(data);
+altime = table2array(cleanedData); % Convert table data to a readable matrix
+altitude = zeros(size(altime,1),size(altime,2)); % Creates a new matrix to fill with atmospheric data
+% Loads all of the .csv data into the altitude matrix
+for i = 1:size(altime,2)
+   altitude(:,i) = altime(:,i);
+end
+% Loops through each row of the altitude matrix
+% Using the atmospheric model from NASA we can calculate the atmospheric
+% pressure at all altitudes
+for i = 1:size(altitude,1)
+   if altitude(i,2) <= 11000 && altitude(i,2) >= 0
+    altitude(i,7) = (15.04-0.00649*altitude(i,2))+273.15; % Temperature [K]
+    altitude(i,4) = (101.29*((altitude(i,7))/288.08)^5.256)*10^3; % Pressure [kPa]
+   elseif altitude(i,2) > 11000 && altitude(i,2) <= 25000
+    altitude(i,7) = 216.69; % Temperature [K]
+    altitude(i,4) = (22.65*exp(1.73-0.000157*altitude(i,2)))*10^3; % Pressure [kPa]
+   else
+    altitude(i,7) = (-131.21 + 0.00299*altitude(i,2))+273.15; % Temperature [K]
+    altitude(i,4) = (2.488*(altitude(i,7))^-11.388)*10^3; % Pressure [kPa]
+   end
+end
+rhofit = polyfit(altitude(:,1),altitude(:,6),10); % Fits a function to the air density with respect to the trajectory timescale
+tempfit = polyfit(altitude(:,1),altitude(:,7),22); % Fits a function to the air temperature with respect to the trajectory timescale
+localM = polyfit(altitude(:,1),altitude(:,3),14); % Fits a function to the Mach number with respect to the trajectory timescale
+pfit = polyfit(altitude(:,1),altitude(:,4),14); % Fits a function to the air pressure with respect to the trajectory timescale
+end
+function [cpfit,cvfit] = air(inputfile)
+mcp = readmatrix(inputfile);
+tcp1 = mcp;
+for i = 1:size(mcp,1)
+    tcp1(i,2) = mcp(i,3)*1000/28;
+    tcp1(i,3) = mcp(i,3)*1000/28;
+end
+cpfit = polyfit(tcp1(:,1),tcp1(:,2),10); % Fits a function to specific heat capacity, cp based on temperature
+cvfit = polyfit(tcp1(:,1),tcp1(:,2),10); % Fits a function to specific heat capacity, cv based on temperature
+end
 %% 1-Dimensional Implicit Heat Analysis with conduction, convection, and radiation
-clear;
-
+function [T_history] = run_1d_solver(inputfile,altitudefile,eps,L,radius,Nx,mode,hm)
+warning('off','all');
 % Access Material Properties
-inputfile = 'Materials/graphiteParaPlane.txt';
+%inputfile = 'carbonCeramic.txt';
 fig = 1;
 fidmat = fopen(inputfile,'r');
 data = struct;
@@ -23,25 +64,18 @@ end
 end
 
 % Accesses specific heat data based on temperature
-mcp = readmatrix('Air_Mixtures/N2.txt');
-tcp1 = mcp;
-for i = 1:size(mcp,1)
-    tcp1(i,2) = mcp(i,3)*1000/28;
-    tcp1(i,3) = mcp(i,3)*1000/28;
-end
-cpfit = polyfit(tcp1(:,1),tcp1(:,2),10); % Fits a function to specific heat capacity, cp based on temperature
-cvfit = polyfit(tcp1(:,1),tcp1(:,2),10); % Fits a function to specific heat capacity, cv based on temperature
+cpfit = air('N2.txt');
 alpha = data.ThermalConductivity_W_m__C_/(data.Density_kg_m_3_*data.SpecificHeatCapacity_J_kg__C_); % Thermal diffusivity [m^2/s]
-[altitude,rhofit,tempfit,localM,pfit] = altgen('thermal_team_data.csv');
-eps = 0.5;        % Emissivity of Material
+[altitude,rhofit,tempfit,localM,pfit] = altgen(altitudefile);
+%eps = 0.5;        % Emissivity of Material
 sig = 5.67e-8;    % Stefan-Boltzmann Constant
 % Time and Spatial Step Initialization
-L = 0.1;          % Characteristic Length
-radius = 0.002;   % Nose Radius
-Nx = 100;         % # of Spatial Partitions
+%L = 0.1;          % Characteristic Length
+%radius = 0.002;   % Nose Radius
+%Nx = 100;         % # of Spatial Partitions
 dx = L/(Nx-1);    % Spatial Steps
 time = altitude(end,1); % Time [s]
-Fo = 0.3;         % Fourier Number
+Fo = 0.4;         % Fourier Number
 dt = dx^2*Fo/alpha; % Time Steps
 Nt = ceil(time/dt); % # of Time Partitions
 
@@ -55,7 +89,6 @@ Pr = 0.71;                    % Prandtl Number
 r = 1;                        % Recovery Factor
 RgasAir = 296.8;              % Gas specific constant [J/kg-K]
 p_inf = altitude(1,4);        % Freestream Pressure [Pa]
-rho_inf = altitude(1,6);      % Freestream Density [kg/m^3]
 qddot1 = zeros(Nt,1);         % Heat Flux Check
 gamma1 = qddot1;              % Gamma Check
 
@@ -69,10 +102,10 @@ for p = 1:Nt
     gamma = polyval(cpfit,T_inf)/(polyval(cpfit,T_inf)-RgasAir); % Ratio of Specific Heats
     T_stag = T_inf*(1+(gamma-1)/2*lMach^2); % Stagnation Temperature [K]
     rhoe = polyval(rhofit,p*dt)*((gamma+1)*(lMach*sind(90))^2/((gamma-1)*(lMach*sind(90))^2+2)); % Edge Density
-    pe = p_inf*(1+(2*gamma)/(gamma+1)*((lMach*sind(90))^2-1)); % Edge pressure
+    pe = p_inf*(1+(2*gamma)/(gamma+1)*((lMach*sind(90))^2-1)); % Edge pressure [Pa]
     ue = lMach*sqrt(RgasAir*gamma*T_inf)*(1-(2*((lMach*sind(90))^2-1)/((gamma+1)*lMach^2))); % Horizontal component of velocity at the edge
-    Te = T_inf*(pe/p_inf)/(rhoe/polyval(rhofit,p*dt)); % Edge Temperature
-    Taw = Te*(1+(gamma-1)/2*(ue/sqrt(RgasAir*gamma*Te))^2); % Adiabatic Wall Temperature
+    Te = T_inf*(pe/p_inf)/(rhoe/polyval(rhofit,p*dt)); % Edge Temperature [K]
+    Taw = Te*(1+(gamma-1)/2*(ue/sqrt(RgasAir*gamma*Te))^2); % Adiabatic Wall Temperature [K]
     mue = 1.716*10^-5.*(Te/273.1).^(3/2)*383.1./(Te+110); % Viscosity at the edge
     dudx = (1/radius)*sqrt(2*(pe-p_inf)/rhoe); % Gradient of the velocity in the x1 direction
     h_aw = polyval(cpfit,Taw)*Taw; % Adiabatic Wall Enthalpy
@@ -87,10 +120,14 @@ for p = 1:Nt
         Fra = 1.2;
     end
     tau_w = Cf*qe;
-    %qconv = Fra*tau_w*polyval(cpfit,T(1))*(Taw-T(1))/ue;
-    qconv = 0.57*Pr^(-0.6)*(rhoe*mue)^0.5*(h_aw-h_w)*sqrt(dudx);
+    if hm == 1
+    qconv = Fra*tau_w*polyval(cpfit,T(1))*(Taw-T(1))/ue;
+    end
+    if hm == 0
+    qconv = 0.763*Pr^(-0.6)*(rhoe*mue)^0.5*(h_aw-h_w)*sqrt(dudx);
+    end
     qcond = T(2)-T(1);
-    qrad = sig*eps*T(1)^4;
+    qrad = sig*eps*(T(1))^4;
     qddot = qconv-qrad;
     % Update the Edge Node
     T_new(1) = dt/(dx*data.Density_kg_m_3_*data.SpecificHeatCapacity_J_kg__C_)*qddot + (alpha*dt/dx^2)*qcond + T(1);
@@ -109,7 +146,7 @@ for p = 1:Nt
     qddot1(p,1) = qddot;
 end
 
-mode = 1; % mode = 0 for steady state, mode = 1 for transient
+% mode = 0 for steady state, mode = 1 for transient
 
 % Plot Temperature vs Time
 if mode == 1
@@ -127,10 +164,13 @@ if mode == 1
 	shading interp;
 elseif mode == 0
 	x = linspace(0,L,Nx);
-	plot(x,T_history(:,end))
-	xlabel('Position [m]')
+    t = linspace(0,time,Nt);
+	plot(t,T_history(1,:))
+	xlabel('Time [s]')
 	ylabel('Temperature [K]')
 	title('1D Transient Heat Transfer');
+    hold on
+    %ylim([2700 3000])
 end
 figure;
 tiledlayout(2,3);
@@ -173,35 +213,5 @@ plot(altitude(:,1),altitude(:,3),'r-','LineWidth',2);
 xlabel('Time [s]')
 ylabel('Mach Number')
 title('Mach Number over Time')
-
-function [altitude,rhofit,tempfit,localM,pfit] = altgen(inputfile)
-% Access Altitude Data
-data = readtable(inputfile);
-% Step 2: Remove rows with NaN values
-cleanedData = rmmissing(data);
-altime = table2array(cleanedData); % Convert table data to a readable matrix
-altitude = zeros(size(altime,1),size(altime,2)); % Creates a new matrix to fill with atmospheric data
-% Loads all of the .csv data into the altitude matrix
-for i = 1:size(altime,2)
-   altitude(:,i) = altime(:,i);
 end
-% Loops through each row of the altitude matrix
-% Using the atmospheric model from NASA we can calculate the atmospheric
-% pressure at all altitudes
-for i = 1:size(altitude,1)
-   if altitude(i,2) <= 11000 && altitude(i,2) >= 0
-    %altitude(i,7) = (15.04-0.00649*altitude(i,2))+273.15; % Temperature [K]
-    altitude(i,4) = (101.29*((altitude(i,7))/288.08)^5.256)*10^3; % Pressure [kPa]
-   elseif altitude(i,2) > 11000 && altitude(i,2) <= 25000
-    %altitude(i,7) = 216.69; % Temperature [K]
-    altitude(i,4) = (22.65*exp(1.73-0.000157*altitude(i,2)))*10^3; % Pressure [kPa]
-   else
-    %altitude(i,7) = (-131.21 + 0.00299*altitude(i,2))+273.15; % Temperature [K]
-    altitude(i,4) = (2.488*(altitude(i,7))^-11.388)*10^3; % Pressure [kPa]
-   end
-end
-rhofit = polyfit(altitude(:,1),altitude(:,6),10); % Fits a function to the air density with respect to the trajectory timescale
-tempfit = polyfit(altitude(:,1),altitude(:,7),22); % Fits a function to the air temperature with respect to the trajectory timescale
-localM = polyfit(altitude(:,1),altitude(:,3),14); % Fits a function to the Mach number with respect to the trajectory timescale
-pfit = polyfit(altitude(:,1),altitude(:,4),14); % Fits a function to the air pressure with respect to the trajectory timescale
-end
+run_1d_solver('carbCarb50.txt','thermal_team_data1.csv',0.2,0.005,0.005,25,1,0);
