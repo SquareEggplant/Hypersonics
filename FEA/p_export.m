@@ -24,9 +24,8 @@ v_mag = zeros(size(T_e));
 x = centroids(:, 1);
 v_mag = sqrt(U_e.^2+V_e.^2+W_e.^2);
 M_e = v_mag./sqrt(y*Rgas*T_e);
-T_aw = T_e.*(1+r*((y-1)/2).*M_e.^2); 		% adiabatic wall temperature
-T_t = T_inf*(1+(y-1)/2*M_inf);		% total stagnation temperature
-rho_e = rho_inf*((y+1)*M_inf^2/(y-1)*M_inf^2+2);
+T_t = T_inf*(1+ (y-1)/2 * M_inf^2);		% total stagnation temperature
+rho_e = P_e ./ (Rgas .* T_e);
 squiggle_w = T_e/T_t;
 F_RA = zeros(size(squiggle_w));  % Preallocate
 % Case 1: squiggle_w < 0.2
@@ -53,6 +52,7 @@ OsOe = (musmue).^(1/2)./(TsTe).^(1/2);
 cfi = 0.664./(Re).^(1/2);
 cfc = cfi.*OsOe;
 end
+T_aw = T_e.*(1+r*((y-1)/2).*M_e.^2); 		% adiabatic wall temperature
 q_e = 0.5*rho_e.*v_mag.^2;
 Tau_w = cfc.*q_e;					% Wall shear stress
 Cp = y*Rgas/(y-1);
