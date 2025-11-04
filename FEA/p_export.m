@@ -147,9 +147,9 @@ writematrix(csvPressureData, csvPressureOut, 'WriteMode','append');
 fprintf('Export complete. Data saved to %s\n', csvPressureOut);
 
 % Export heat flux values to csv
-headers = {'FaceID','X','Y','Z','Heat Flux'};
+headers = {'Heat Flux','FaceID'};
 writecell(headers, csvHeatFluxOut);
-writematrix(csvHeatFluxData, csvHeatFluxOut, 'WriteMode','append');
+writematrix(csvHeatFluxData(:,[5,1]), csvHeatFluxOut, 'WriteMode','append');
 
 fprintf('Export complete. Data saved to %s\n', csvHeatFluxOut);
 
