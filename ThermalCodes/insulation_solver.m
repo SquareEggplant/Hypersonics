@@ -62,3 +62,4 @@ function [T_inshistory] = run_insulation_solver(inputfile,altitudefile,L,Nx,T_hi
 	colorbar('eastoutside');
 	shading interp;
 end
+T_history1 = run_insulation_solver('silica.txt','thermal_team_data.csv',0.01,10,T_history);
