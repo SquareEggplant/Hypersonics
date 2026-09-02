@@ -268,4 +268,4 @@ end
 
 %% Function Call
 clear;
-T_history1 = run_1d_solver({'ZrO2.txt','tungsten.txt','tungsten.txt','tungsten.txt','tungsten.txt','tungsten.txt'},'Trajectory_test_aero_grids_dense.csv',0.003,[0.0005 0.06 0.06 0.06 0.06 0.06],200,"2D","nose");
+T_history1 = run_1d_solver({'ZrO2.txt','tungsten.txt','inconel718.txt'},'Trajectory_test_aero_grids_dense.csv',0.003,[0.0005 0.03 0.02],200,"2D","nose");
